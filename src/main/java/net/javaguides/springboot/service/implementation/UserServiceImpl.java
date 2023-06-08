@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(User user) {
+    public UserDto updateUser(UserDto user) {
         // get user
         User existingUser = userRepository.findById(user.getId()).get();
         // update user
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
         existingUser.setEmail(user.getEmail());
         // save user
         User updatedUser = userRepository.save(existingUser);
-        return updatedUser;
+        return UserMapper.mapToUserDto(updatedUser);
     }
 
     @Override
